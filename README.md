@@ -1,46 +1,106 @@
-# Getting Started with Create React App
+# Project README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project implements a frontend application that displays a list of document cards with drag-and-drop and overlay capabilities. The project has been built as per the requirements given for the frontend tasks. This README provides an overview of my approach, setup instructions, and some additional information on my thought process.
 
-In the project directory, you can run:
+### Tech Stack
 
-### `npm start`
+- **Frontend**: React
+- **Mocking Service**: `msw` (Mock Service Worker) to simulate API responses for a local, serverless experience.
+- **Data Persistence**: `localStorage` to retain data across page reloads.
+- **Styling**: CSS and a few React component libraries
+- **Development Tools**: Docker (with `docker-compose`), for setting up the app in a containerized environment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instructions to Run
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+Ensure you have the following installed on your machine:
+- Node.js (v14+)
+- Docker and Docker Compose
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Setup Steps
 
-### `npm run build`
+1. **Clone the Repository**
+   ```bash
+   git clone <repo-url>
+   cd <repo-directory>
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Run the Application Locally**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - The application will start on `http://localhost:3000`.
+   - The mock API will also be activated, thanks to `msw`, allowing the app to make requests without an actual backend server.
 
-### `npm run eject`
+4. **Using Docker Compose for Deployment**
+   - Build and start the app in a Docker container:
+     ```bash
+     docker-compose up --build
+     ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   - Once running, the app should be accessible at `http://localhost:3000`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Application Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. **Grid Display**:
+   - Loads a static JSON file, displaying five document cards in a 3x2 grid layout.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. **Dynamic Card Layout**:
+   - The cards are displayed with distinct thumbnails based on their document type.
+   - Users can reorder the cards via drag-and-drop.
 
-## Learn More
+3. **Image Overlay**:
+   - Clicking a card opens an image overlay centered on the page.
+   - The overlay can be closed by pressing the `ESC` key.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Mocked API with `msw`**:
+   - The app uses `msw` to simulate REST API interactions, such as fetching and adding data, without needing an actual server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. **Data Persistence with `localStorage`**:
+   - Data is stored in `localStorage`, allowing it to persist across page reloads.
+
+
+### Thought Process and Approach
+
+1. **User Experience and Simplicity**:
+   - Focused on creating a simple, intuitive UI with the core requested features.
+   - Ensured that actions like reordering and viewing images were seamless, with attention to performance and responsiveness.
+
+2. **Data Persistence**:
+   - Chose `localStorage` for its simplicity and effectiveness in maintaining data across reloads in the frontend environment.
+   - Implemented a save function that checks for changes before writing to avoid redundant saves, optimizing the application for user experience.
+
+3. **Drag-and-Drop Implementation**:
+   - Used HTML5 Drag and Drop API for drag-and-drop functionality to ensure smooth interactions and flexibility.
+
+4. **Mock Service Worker for Local API Simulation**:
+   - The use of `msw` enabled the development of API interactions as if they were real, without a backend.
+   - Mocking provided a quick, lightweight alternative, allowing me to work on the frontend independently.
+
+### Deployment Approach
+
+Since I am focused on frontend development, I only containerized the React app using Docker. This approach would allow seamless deployment in most CI/CD environments.
+
+## Additional Notes
+
+- **Modern Practices**: I used React Hooks and functional components to ensure a modern, optimized codebase.
+- **Simplicity and Focus**: I adhered strictly to the requirements, avoiding any unnecessary complexities or extra features to keep the solution straightforward and focused.
+
+### Hypothetical API Design
+
+If I were to design a backend API for this project, the following endpoints would be implemented for managing document cards:
+
+1. **`GET /api/items`** - Fetch all items.
+2. **`POST /api/items`** - Add a new items.
+3. **`PUT /api/items/:id`** - Update a item's details.
+4. **`DELETE /api/items/:id`** - Remove a itemi by ID.
+  
