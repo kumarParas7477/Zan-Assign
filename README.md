@@ -1,5 +1,10 @@
 # Project README
 
+
+## I AM A FRONTENDEND DEVELOPER. PLEASE ONLY REVIEW FRONT-END CODE.
+
+
+
 ## Overview
 
 This project implements a frontend application that displays a list of document cards with drag-and-drop and overlay capabilities. The project has been built as per the requirements given for the frontend tasks. This README provides an overview of my approach, setup instructions, and some additional information on my thought process.
